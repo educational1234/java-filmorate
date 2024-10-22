@@ -42,4 +42,17 @@ public class UserControllerTest {
                         .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void shouldReturnBadRequestIfLoginIsEmpty() throws Exception {
+        User user = new User();
+        user.setEmail("test@example.com");
+        user.setLogin("");  // Некорректный логин
+        user.setBirthday(LocalDate.of(1990, 1, 1));
+
+        mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(user)))
+                .andExpect(status().isBadRequest());
+    }
 }

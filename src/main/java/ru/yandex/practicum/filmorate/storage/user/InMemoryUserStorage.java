@@ -38,4 +38,6 @@ public class InMemoryUserStorage implements UserStorage {
     public List<User> getAllUsers() {
         return new ArrayList<>(users.values());
     }
+
+
 }
